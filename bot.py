@@ -16,6 +16,7 @@ token = os.environ['token']
 
 #       Your bot code below
 bot = telebot.TeleBot(token)
+tgadmin=385390931
 # some_api = some_api_lib.connect(some_api_token)
 #              ...
 
@@ -48,7 +49,7 @@ def user_leave_greet(message):
 	else:
 		title = message.chat.title
 		print("kicked the bot by some one from a group named "+title)
-		bot.send_message(385390931, "*I was kicked by someone from group* "+title,parse_mode='Markdown')
+		bot.send_message(tgadmin, "*I was kicked by someone from group* "+title,parse_mode='Markdown')
 		
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
