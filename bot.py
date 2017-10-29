@@ -45,7 +45,7 @@ def user_leave_greet(message):
 		f_name = message.left_chat_member.first_name
 		title = message.chat.title
 		leftmember=str(f_name)
-		bot.send_message(message.chat.id, "_"+leftmember"_ 'left' *"+title+"* `see you soon`",parse_mode='Markdown')
+		bot.send_message(message.chat.id, "_"+leftmember+"_ 'left' *"+title+"* `see you soon`",parse_mode='Markdown')
 	else:
 		title = message.chat.title
 		print("kicked the bot by some one from a group named "+title)
