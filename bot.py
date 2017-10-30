@@ -36,7 +36,7 @@ def user_joined_greet(message):
 	else:
 		title = message.chat.title
 		print("added to a new group named "+title)
-		bot.send_message(385390931, "*I was added by someone to group* "+title,parse_mode='Markdown')
+		bot.send_message(tgadmin, "*I was added by someone to group* "+title,parse_mode='Markdown')
 		
 @bot.message_handler(content_types=['left_chat_member'])
 def user_leave_greet(message):
