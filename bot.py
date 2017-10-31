@@ -46,7 +46,7 @@ def user_leave_greet(message):
 		try:
 			l_name=message.leftmember.last_name
 		except:
-			l_name="-"
+			l_name=" "
 		title = message.chat.title
 		leftmember=str(f_name+l_name)
 		bot.send_message(message.chat.id, "_"+leftmember+"_ 'left' *"+title+"* `see you soon`",parse_mode='Markdown')
