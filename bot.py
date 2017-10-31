@@ -24,7 +24,7 @@ tgadmin=385390931
 def send_welcome(message):
 	print("welcome triggered")
 	bot.reply_to(message, "*you triggered help and start*",parse_mode='Markdown')
-@bot.message_handler(func=lambda content_types=['new_chat_members'])
+@bot.message_handler(func=lambda message: True, content_types=['new_chat_members'])
 def user_joined_greet(message):
 	print("group Joined Welcome triggered")
 	if message.new_chat_member.id != bot.get_me().id:
@@ -38,7 +38,7 @@ def user_joined_greet(message):
 		print("added to a new group named "+title)
 		bot.send_message(tgadmin, "*I was added by someone to group* "+title,parse_mode='Markdown')
 		
-@bot.message_handler(func=lambda content_types=['left_chat_member'])
+@bot.message_handler(func=lambda message: True, content_types=['left_chat_member'])
 def user_leave_greet(message):
 	if message.left_chat_member.id != bot.get_me().id:
 		print("group left curse triggered")
@@ -56,4 +56,4 @@ def echo_all(message):
 	print("echo_all triggered")
 	bot.reply_to(message, message.text)
 
-bot.polling()
+bot.polling(none_stop=True)
