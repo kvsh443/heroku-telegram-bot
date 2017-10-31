@@ -43,6 +43,10 @@ def user_leave_greet(message):
 	if message.left_chat_member.id != bot.get_me().id:
 		print("group left curse triggered")
 		f_name = message.left_chat_member.first_name
+		try:
+			l_name=message.leftmember/last_name
+		else:
+			l_name="-"
 		title = message.chat.title
 		leftmember=str(f_name)
 		bot.send_message(message.chat.id, "_"+leftmember+"_ 'left' *"+title+"* `see you soon`",parse_mode='Markdown')
