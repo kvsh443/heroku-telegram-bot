@@ -31,11 +31,7 @@ def user_joined_greet(message):
 		print("group Joined Welcome triggered 2")
 		f_name = message.new_chat_member.first_name
 		title = message.chat.title
-		try:
-			l_name=message.new_chat_member.last_name
-		except:
-			l_name=" "
-		newmember=str(f_name+" "+l_name)
+		newmember=str(f_name)
 		bot.send_message(message.chat.id, "`Welcome` " + "_"+newmember+ "_"+ "`.. to our group` "+ "*"+title+"*" + "` 🤗`",parse_mode='Markdown')
 	else:
 		title = message.chat.title
@@ -47,12 +43,8 @@ def user_leave_greet(message):
 	if message.left_chat_member.id != bot.get_me().id:
 		print("group left curse triggered")
 		f_name = message.left_chat_member.first_name
-		try:
-			l_name=message.leftmember.last_name
-		except:
-			l_name=" "
 		title = message.chat.title
-		leftmember=str(f_name+" "+l_name)
+		leftmember=str(f_name)
 		bot.send_message(message.chat.id, "_"+leftmember+"_  `left`  *"+title+"* `see you soon`",parse_mode='Markdown')
 	else:
 		title = message.chat.title
