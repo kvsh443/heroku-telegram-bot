@@ -49,7 +49,7 @@ def user_leave_greet(message):
 		print("group left curse triggered")
 		f_name = message.left_chat_member.first_name
 		try:
-			l_name=message.leftmember.last_name
+			l_name=message.left_chat_member.last_name
 			leftmember=str(f_name+" "+l_name)
 		except:
 			l_name=" "
