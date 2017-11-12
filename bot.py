@@ -61,7 +61,7 @@ def music_link(message):
 			#request=requests.get(URLTM,verify=False,data={'chat_id':chatID,'reply_to_message_id ':r2mid,'text':"Sorry ! "+" "+firstname+" "+lastname+" unabled to find music "+data_count+"_"+counter})
 		else:
 			print(jm_status_code,jm_status_error,jm_result_count)
-
+	jmusic()
 #telegram commands 
 @bot.message_handler(commands=['help', 'start'])
 def send_welcome(message):
