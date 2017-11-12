@@ -51,7 +51,7 @@ def music_link(chat_id):
 				artistofmp3=jm_response.json()['results'][data_count]['artist_name']
 				durationofmp3=jm_response.json()['results'][data_count]['duration']
 				print(artistofmp3,titleofmp3,durationofmp3,linkofmp3)
-				bot.send_audio(chat_id,linkofmp3,durationofmp3,artistofmp3,titleofmp3,parse_mode='Markdown')
+				bot.send_audio(chat_id,linkofmp3,durationofmp3,artistofmp3,titleofmp3)
 			#request=requests.get(URLTA,verify=False,data={'chat_id':chatID,'reply_to_message_id ':r2mid,'caption':"If there is an audio you will display it ",'audio':linkofmp3,'duration':durationofmp3,'performer':artistofmp3,'title':titleofmp3})
 				counter=data_count
 				counter=counter+1
