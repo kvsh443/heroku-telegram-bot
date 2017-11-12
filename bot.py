@@ -18,12 +18,61 @@ token = os.environ['token']
 bot = telebot.TeleBot(token)
 tgadmin=385390931
 # some_api = some_api_lib.connect(some_api_token)
-#              ...
+#fuctions
+#music fuction
+JM_API_URL="https://api.jamendo.com/v3.0/tracks/?client_id={cid}&format=jsonpretty&fuzzytags=edm+house&speed=high+veryhigh&include=musicinfo&groupby=album_id"
+@bot.message_handler(commands=['music'])
+def music_link(message):
+	print("music link triggered")
+	def jmusic():
+	global linkofmp3
+	global titleofmp3
+	global artistofmp3
+	global durationofmp3
+	global data_count
+	headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+   'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+   'Accept-Encoding': 'none',
+   'Accept-Language': 'en-US,en;q=0.8',
+   'Connection': 'keep-alive'}
+	counter =0
+	jm_response=requests.get(JM_API_URL.format(cid="ca2a93cf"),headers)
+	jm_status_code=jm_response.json()['headers']['code']
+	try:
+		jm_status_error=jm_response.json()['headers']['error_message']
+	except:
+		jm_status_error="no_errors_yet_amigo"
+	while jm_status_code == 0:
+		try:
+			jm_result_count=jm_response.json()['headers']['results_count']
+		except:
+			jm_result_count=False
+		while counter < jm_result_count:
+			data_count=counter
+			linkofmp3=jm_response.json()['results'][data_count]['audiodownload']
+			titleofmp3=jm_response.json()['results'][data_count]['name']
+			artistofmp3=jm_response.json()['results'][data_count]['artist_name']
+			durationofmp3=jm_response.json()['results'][data_count]['duration']
+			print(artistofmp3,titleofmp3,durationofmp3,linkofmp3)
+			bot.reply_to(message, linkofmp3,parse_mode='Markdown')
+			#request=requests.get(URLTA,verify=False,data={'chat_id':chatID,'reply_to_message_id ':r2mid,'caption':"If there is an audio you will display it ",'audio':linkofmp3,'duration':durationofmp3,'performer':artistofmp3,'title':titleofmp3})
+			counter=data_count
+			counter=counter+1
+		else:
+			data_count=jm_result_count
+			bot.reply_to(message, "*no muisc gerne found*",parse_mode='Markdown')
+		counter=counter+1
+			#request=requests.get(URLTM,verify=False,data={'chat_id':chatID,'reply_to_message_id ':r2mid,'text':"Sorry ! "+" "+firstname+" "+lastname+" unabled to find music "+data_count+"_"+counter})
+	else:
+		print(jm_status_code,jm_status_error,jm_result_count)
 
+#telegram commands 
 @bot.message_handler(commands=['help', 'start'])
 def send_welcome(message):
 	print("welcome triggered")
 	bot.reply_to(message, "*you triggered help and start*",parse_mode='Markdown')
+#telegram new meber joined
 @bot.message_handler(func=lambda message: True, content_types=['new_chat_members'])
 def user_joined_greet(message):
 	print("group Joined Welcome triggered")
@@ -42,7 +91,7 @@ def user_joined_greet(message):
 		title = message.chat.title
 		print("added to a new group named "+title)
 		bot.send_message(tgadmin, "*I was added by someone to group* "+title,parse_mode='Markdown')
-		
+#telegram member left			
 @bot.message_handler(func=lambda message: True, content_types=['left_chat_member'])
 def user_leave_greet(message):
 	if message.left_chat_member.id != bot.get_me().id:
@@ -61,7 +110,8 @@ def user_leave_greet(message):
 		title = message.chat.title
 		print("kicked the bot by some one from a group named "+title)
 		bot.send_message(tgadmin, "*I was kicked by someone from group* "+title,parse_mode='Markdown')
-		
+@
+#telegram messgae echo		
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
 	print("echo_all triggered")
