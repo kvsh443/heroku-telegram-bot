@@ -105,7 +105,7 @@ def user_leave_greet(message):
 		title = message.chat.title
 		print("kicked the bot by some one from a group named "+title)
 		bot.send_message(tgadmin, "*I was kicked by someone from group* "+title,parse_mode='Markdown')
-@
+
 #telegram messgae echo		
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
