@@ -21,7 +21,7 @@ tgadmin=385390931
 # some_api = some_api_lib.connect(some_api_token)
 #fuctions
 #music fuction
-JM_API_URL="https://api.jamendo.com/v3.0/tracks/?client_id={cid}&format=jsonpretty&fuzzytags=edm+house&speed=high+veryhigh&include=musicinfo&groupby=album_id"
+JM_API_URL="https://api.jamendo.com/v3.0/tracks/?client_id={cid}&format=jsonpretty&fuzzytags={gerne}&include=musicinfo&groupby=album_id"
 @bot.message_handler(commands=['music'])
 def music_link(message):
 	print("music link triggered")
@@ -33,7 +33,7 @@ def music_link(message):
 		global data_count
 		headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11','Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8','Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3','Accept-Encoding': 'none','Accept-Language': 'en-US,en;q=0.8','Connection': 'keep-alive'}
 		counter =0
-		jm_response=requests.get(JM_API_URL.format(cid="ca2a93cf"),headers)
+		jm_response=requests.get(JM_API_URL.format(cid="ca2a93cf",gerne="edm"),headers)
 		jm_status_code=jm_response.json()['headers']['code']
 		try:
 			jm_status_error=jm_response.json()['headers']['error_message']
@@ -51,7 +51,7 @@ def music_link(message):
 				artistofmp3=jm_response.json()['results'][data_count]['artist_name']
 				durationofmp3=jm_response.json()['results'][data_count]['duration']
 				print(artistofmp3,titleofmp3,durationofmp3,linkofmp3)
-				bot.reply_to(message, linkofmp3,parse_mode='Markdown')
+				bot.send_audio(chat_id,linkofmp3,duration,artistofmp3,titleofmp3,parse_mode='Markdown')
 			#request=requests.get(URLTA,verify=False,data={'chat_id':chatID,'reply_to_message_id ':r2mid,'caption':"If there is an audio you will display it ",'audio':linkofmp3,'duration':durationofmp3,'performer':artistofmp3,'title':titleofmp3})
 				counter=data_count
 				counter=counter+1
@@ -61,7 +61,7 @@ def music_link(message):
 			#request=requests.get(URLTM,verify=False,data={'chat_id':chatID,'reply_to_message_id ':r2mid,'text':"Sorry ! "+" "+firstname+" "+lastname+" unabled to find music "+data_count+"_"+counter})
 		else:
 			print(jm_status_code,jm_status_error,jm_result_count)
-		bot.reply_to(message, "*no muisc gerne found*",parse_mode='Markdown')
+		bot.reply_to(message, "*no muisc gerne found*",parse_mode='Markdown')		
 	jmusic()
 
 #telegram commands 
