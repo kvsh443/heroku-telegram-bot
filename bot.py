@@ -23,7 +23,7 @@ tgadmin=385390931
 #music fuction
 JM_API_URL="https://api.jamendo.com/v3.0/tracks/?client_id={cid}&format=jsonpretty&fuzzytags={gerne}&include=musicinfo&groupby=album_id"
 @bot.message_handler(commands=['music'])
-def music_link(message):
+def music_link(message,chat_id):
 	print("music link triggered")
 	def jmusic():
 		global linkofmp3
