@@ -57,11 +57,11 @@ def music_link(message):
 				counter=counter+1
 			else:
 				data_count=jm_result_count
-				bot.reply_to(message, "*no muisc gerne found*",parse_mode='Markdown')
 			counter=counter+1
 			#request=requests.get(URLTM,verify=False,data={'chat_id':chatID,'reply_to_message_id ':r2mid,'text':"Sorry ! "+" "+firstname+" "+lastname+" unabled to find music "+data_count+"_"+counter})
 		else:
 			print(jm_status_code,jm_status_error,jm_result_count)
+		bot.reply_to(message, "*no muisc gerne found*",parse_mode='Markdown')
 	jmusic()
 
 #telegram commands 
