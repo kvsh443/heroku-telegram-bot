@@ -114,14 +114,20 @@ def user_leave_greet(message):
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
 	print("echo_all triggered")
-	try:
-		link=message.entities[0].url
-		glink='https://www.google.com/searchbyimage?image_url='+link
-		params = urlencode(dict(access_key="87f2c5e74f2e46d2a8d0970c37f21c78",url=glink))
-		payload = urlretrieve("https://api.apiflash.com/v1/urltoimage?" + params)
-		bot.send_photo(message.chat.id,payload)
-	except:
-		payload = message.text
-		bot.reply_to(message, payload)
-
+# 	try:
+# 		link=message.entities[0].url
+# 		glink='https://www.google.com/searchbyimage?image_url='+link
+# 		params = urlencode(dict(access_key="87f2c5e74f2e46d2a8d0970c37f21c78",url=glink))
+# 		payload = urlretrieve("https://api.apiflash.com/v1/urltoimage?" + params)
+# 		bot.send_photo(message.chat.id,payload)
+# 	except:
+# 		payload = message.text
+# 		bot.reply_to(message, payload)
+	link=message.entities[0].url
+	glink='https://www.google.com/searchbyimage?image_url='+link
+	params = urlencode(dict(access_key="87f2c5e74f2e46d2a8d0970c37f21c78",url=glink))
+	payload = urlretrieve("https://api.apiflash.com/v1/urltoimage?" + params)
+	bot.send_photo(message.chat.id,payload)
+	
+	
 bot.polling(none_stop=True)
