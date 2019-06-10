@@ -115,10 +115,9 @@ def echo_all(message):
 	try:
 		link=message.entities[0].url
 		glink='https://www.google.com/searchbyimage?image_url='+link
-		blink='https://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl='+link
-		payload = glink+' \n'+blink+' \n'
+		payload = glink
 	except:
 		payload = message.text
-	bot.reply_to(message, payload)
+	bot.reply_to(message, payload,prase_mode='Markdown')
 
 bot.polling(none_stop=True)
