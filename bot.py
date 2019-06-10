@@ -123,7 +123,7 @@ def echo_all(message):
 # 		bot.reply_to(message, payload)
 	link=message.entities[0].url
 	glink='https://www.google.com/searchbyimage?image_url='+link
-	payload = 'https://api.apiflash.com/v1/urltoimage?access_key=87f2c5e74f2e46d2a8d0970c37f21c78&url=https://www.google.com/searchbyimage?image_url='+glink
+	payload = 'https://api.apiflash.com/v1/urltoimage?access_key=87f2c5e74f2e46d2a8d0970c37f21c78&url='+glink
 	bot.send_photo(message.chat.id,payload)
 	
 	
