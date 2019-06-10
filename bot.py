@@ -3,6 +3,8 @@ import redis
 import os
 import telebot
 import requests
+from urllib.parse import urlencode
+from urllib.request import urlretrieve
 # import some_api_lib
 # import ...
 
@@ -115,9 +117,11 @@ def echo_all(message):
 	try:
 		link=message.entities[0].url
 		glink='https://www.google.com/searchbyimage?image_url='+link
-		payload = glink
+		params = urlencode(dict(access_key="87f2c5e74f2e46d2a8d0970c37f21c78",url=glink))
+		payload = urlretrieve("https://api.apiflash.com/v1/urltoimage?" + params)
+		bot.send_photo(message.chat.id,payload)
 	except:
 		payload = message.text
-	bot.reply_to(message, payload)
+		bot.reply_to(message, payload)
 
 bot.polling(none_stop=True)
