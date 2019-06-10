@@ -118,6 +118,6 @@ def echo_all(message):
 		payload = glink
 	except:
 		payload = message.text
-	bot.reply_to(message, payload,parse_mode='Markdown')
+	bot.reply_to(message, payload)
 
 bot.polling(none_stop=True)
