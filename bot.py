@@ -112,6 +112,6 @@ def user_leave_greet(message):
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
 	print("echo_all triggered")
-	bot.reply_to(message, message.text)
+	bot.reply_to(message, message.entities[0].url)
 
 bot.polling(none_stop=True)
