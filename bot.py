@@ -98,7 +98,7 @@ def user_leave_greet(message):
 			l_name=message.left_chat_member.last_name
 			leftmember=str(f_name+" "+l_name)
 		except:
-			l_name=" "
+			l_name=" \n"
 			leftmember=str(f_name)
 		title = message.chat.title
 		
@@ -112,6 +112,13 @@ def user_leave_greet(message):
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
 	print("echo_all triggered")
-	bot.reply_to(message, message.entities[0].url)
+	try:
+		link=message.entities[0].url
+		glink='https://www.google.com/searchbyimage?image_url='+link
+		blink='https://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl='+link
+		payload = glink+' \n'+blink+' \n'
+	except:
+		payload = message.text
+	bot.reply_to(message, payload)
 
 bot.polling(none_stop=True)
