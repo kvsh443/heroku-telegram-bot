@@ -118,7 +118,7 @@ def echo_all(message):
 		glink='https://www.google.com/searchbyimage?image_url='+link
 		params = urlencode(dict(access_key="87f2c5e74f2e46d2a8d0970c37f21c78",url=glink,user_agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",width=512,height=512))
 		payload = 'https://api.apiflash.com/v1/urltoimage?'+params
-		bot.send_photo(message.chat.id,payload)
+		bot.send_photo(message.chat.id,payload,caption=glink)
 	except:
 		payload = message.text
 		bot.reply_to(message, payload)
