@@ -109,24 +109,19 @@ def user_leave_greet(message):
 		print("kicked the bot by some one from a group named "+title)
 		bot.send_message(tgadmin, "*I was kicked by someone from group* "+title,parse_mode='Markdown')
 
-#telegram messgae echo		
+#telegram messgae echo		#25b65c13461a49e9a360609c663ce9d0
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
 	print("echo_all triggered")
-# 	try:
-# 		link=message.entities[0].url
-# 		glink='https://www.google.com/searchbyimage?image_url='+link
-# 		params = urlencode(dict(access_key="87f2c5e74f2e46d2a8d0970c37f21c78",url=glink))
-# 		payload = urlretrieve("https://api.apiflash.com/v1/urltoimage?" + params)
-# 		bot.send_photo(message.chat.id,payload)
-# 	except:
-# 		payload = message.text
-# 		bot.reply_to(message, payload)
-	link=message.entities[0].url
-	glink='https://www.google.com/searchbyimage?image_url='+link
-	params = urlencode(dict(access_key="87f2c5e74f2e46d2a8d0970c37f21c78",url=glink,user_agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",width=512,height=512))
-	payload = 'https://api.apiflash.com/v1/urltoimage?'+params
-	bot.send_photo(message.chat.id,payload)
-	
+	try:
+		link=message.entities[0].url
+		glink='https://www.google.com/searchbyimage?image_url='+link
+		params = urlencode(dict(access_key="87f2c5e74f2e46d2a8d0970c37f21c78",url=glink,user_agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",width=512,height=512))
+		payload = 'https://api.apiflash.com/v1/urltoimage?'+params
+		bot.send_photo(message.chat.id,payload)
+	except:
+		payload = message.text
+		bot.reply_to(message, payload)
+
 	
 bot.polling(none_stop=True)
