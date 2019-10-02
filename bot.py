@@ -75,7 +75,7 @@ def user_leave_greet(message):
 		bot.send_message(tgadmin, "*I was kicked by someone from group* "+title,parse_mode='Markdown')
 		
 	
-'''@bot.message_handler(func=lambda message: True)
+@bot.message_handler(func=lambda message: True)
 def totext_all(message):
 	print("writing to text")
 	gtext=message.text
@@ -108,5 +108,5 @@ def totext_all(message):
 	
 	bot.send_message(tgadmin, dumping_data,parse_mode='Markdown')
 	#bot.send_message(message.chat.id , message.text)
-'''
+
 bot.polling()
